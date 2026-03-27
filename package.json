@@ -1,0 +1,11 @@
+﻿{
+  "name": "cg-donation-widget",
+  "version": "1.0.0",
+  "description": "Animated crypto donation widget - Neo-Hippie-Hardcore-Cosmo-Buddha-Punk style",
+  "author": "Makaric",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Makaric/cg-donation-widget"
+  }
+}
