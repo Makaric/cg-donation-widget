@@ -1,6 +1,6 @@
 /* =============================================
    COSMIC GLITCH GURU - i18n DONATION WIDGET
-   Locale: ru = Russian, everything else = English
+   Locale: en, ru, es, pt — auto-detect + toggle
    ============================================= */
 
 class CosmicGuru {
@@ -21,6 +21,22 @@ class CosmicGuru {
         copyBtn: '\u043A\u043E\u043F\u0438\u044F',
         copiedBtn: '\u0421\u041A\u041E\u041F\u0418\u0420\u041E\u0412\u0410\u041D\u041E!',
         langLabel: 'RU'
+      },
+      es: {
+        cta: ['ATESTIGUA', 'AVIVA EL FUEGO', 'INTERCAMBIO DE ENERG\u00cdA', 'RUTA ETERNA', 'DALE BRO'],
+        panelTitle: 'INTERCAMBIO DE ENERG\u00cdA',
+        closeBtn: 'RUTA ETERNA',
+        copyBtn: 'copiar',
+        copiedBtn: '\u00a1COPIADO!',
+        langLabel: 'ES'
+      },
+      pt: {
+        cta: ['TESTEMUNHE', 'ALIMENTE O FOGO', 'TROCA DE ENERGIA', 'ROTA ETERNA', 'CLICA BRO'],
+        panelTitle: 'TROCA DE ENERGIA',
+        closeBtn: 'ROTA ETERNA',
+        copyBtn: 'copiar',
+        copiedBtn: 'COPIADO!',
+        langLabel: 'PT'
       }
     };
 
@@ -38,7 +54,7 @@ class CosmicGuru {
 
   detectLang() {
     const raw = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
-    return raw === 'ru' ? 'ru' : 'en';
+    return this.locales[raw] ? raw : 'en';
   }
 
   get t() {
@@ -46,7 +62,9 @@ class CosmicGuru {
   }
 
   toggleLang() {
-    this.lang = this.lang === 'en' ? 'ru' : 'en';
+    const langs = Object.keys(this.locales);
+    const idx = langs.indexOf(this.lang);
+    this.lang = langs[(idx + 1) % langs.length];
     this.applyLocale();
   }
 

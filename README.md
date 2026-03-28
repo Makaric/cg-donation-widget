@@ -2,9 +2,11 @@
 
 Animated crypto donation widget in **Neo-Hippie-Hardcore-Cosmo-Buddha-Punk / Mad Max** style.
 
+**🔥 [Смотреть Live Demo](https://makaric.github.io/cg-donation-widget/) 🔥**
+
 ## Features
 - **Zero dependencies** - Vanilla JS/CSS/HTML
-- **i18n** - Auto-detects RU/EN from browser
+- **i18n** - Auto-detects RU/EN/ES/PT from browser, cyclic toggle
 - **Responsive** - Desktop (hover) + Mobile (tap)
 - **Mad Max design** - Wasteland Monk character with fire animations
 - **Copy-to-clipboard** - One click to copy any crypto address
