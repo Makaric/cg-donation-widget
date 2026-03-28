@@ -252,3 +252,21 @@ body {
   .c-addr { font-size: 7px; }
   .cta-bar { font-size: 14px; letter-spacing: 2px; }
 }
+/* Language toggle badge */
+.lang-badge {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  background: rgba(139,69,19,0.3);
+  border: 1px solid #5a3a1a;
+  color: #8b7355;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  z-index: 200;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-badge:hover { border-color: #ff6600; color: #ffaa44; }
+

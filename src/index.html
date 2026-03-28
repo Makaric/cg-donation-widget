@@ -1,52 +1,70 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cosmic-Glitch Guru</title>
+  <title>Cosmic Glitch Guru - Donate</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="dust-container" id="dust"></div>
+  <div class="horizon"></div>
 
-<div id="dust"></div>
-<div class="horizon"></div>
-<div id="notify"></div>
+  <!-- Language toggle -->
+  <div class="lang-badge" id="langToggle">EN</div>
 
-<div id="widget">
-  <div class="char-box">
-    <div id="sparks"></div>
-    <img src="guru.jpg" alt="Cosmic Glitch Guru" class="guru-img" />
+  <div class="widget-wrap" id="widget">
+    <div class="character-box">
+      <div class="sparks" id="sparks"></div>
+      <img src="guru.jpg" alt="Cosmic Glitch Guru" class="guru-img" />
+    </div>
+    <div class="cta-bar" id="cta">WITNESS ME</div>
   </div>
-  <div class="cta-bar" id="cta">WITNESS ME</div>
-</div>
 
-<div id="overlay"></div>
+  <div class="overlay" id="overlay"></div>
 
-<div id="panel">
-  <div class="panel-hdr">ENERGY EXCHANGE</div>
-  <div class="crypto-row">
-    <div class="c-icon">&#9830;</div>
-    <div class="c-info"><div class="c-name">ETHEREUM</div><div class="c-addr">0x4A88CEA080F9A2e60324799EF91400d13aEE439a</div></div>
-    <button class="cp-btn" data-coin="eth">copy</button>
-  </div>
-  <div class="crypto-row">
-    <div class="c-icon">&#8383;</div>
-    <div class="c-info"><div class="c-name">BITCOIN</div><div class="c-addr">bc1q6gdlptzwhdqnrt2n96hjfws50seplkmmxurh3v</div></div>
-    <button class="cp-btn" data-coin="btc">copy</button>
-  </div>
-  <div class="crypto-row">
-    <div class="c-icon">&#9673;</div>
-    <div class="c-info"><div class="c-name">SOLANA</div><div class="c-addr">HxV7H5fkYdoXBv6PhaR538xcMqSQFD7hVbBWdb3H5CHF</div></div>
-    <button class="cp-btn" data-coin="sol">copy</button>
-  </div>
-  <div class="crypto-row">
-    <div class="c-icon">&#9670;</div>
-    <div class="c-info"><div class="c-name">TRON</div><div class="c-addr">TMQyjfBgeMhFZQ6DnJxz12xQHY4tcGZgJe</div></div>
-    <button class="cp-btn" data-coin="trx">copy</button>
-  </div>
-  <button id="close-btn">RIDE ETERNAL &#10005;</button>
-</div>
+  <div class="crypto-panel" id="panel">
+    <div class="panel-hdr" id="panelHdr">ENERGY EXCHANGE</div>
 
-<script src="script.js"></script>
+    <div class="crypto-row" data-coin="eth">
+      <div class="c-icon">&#9830;</div>
+      <div class="c-info">
+        <div class="c-name">ETHEREUM</div>
+        <div class="c-addr">0x4A88CEA080F9A2e60324799EF91400d13aEE439a</div>
+      </div>
+      <button class="cp-btn">copy</button>
+    </div>
+
+    <div class="crypto-row" data-coin="btc">
+      <div class="c-icon">&#8383;</div>
+      <div class="c-info">
+        <div class="c-name">BITCOIN</div>
+        <div class="c-addr">bc1q6gdlptzwhdqnrt2n96hjfws50seplkmmxurh3v</div>
+      </div>
+      <button class="cp-btn">copy</button>
+    </div>
+
+    <div class="crypto-row" data-coin="sol">
+      <div class="c-icon">&#9673;</div>
+      <div class="c-info">
+        <div class="c-name">SOLANA</div>
+        <div class="c-addr">HxV7H5fkYdoXBv6PhaR538xcMqSQFD7hVbBWdb3H5CHF</div>
+      </div>
+      <button class="cp-btn">copy</button>
+    </div>
+
+    <div class="crypto-row" data-coin="trx">
+      <div class="c-icon">&#9670;</div>
+      <div class="c-info">
+        <div class="c-name">TRON</div>
+        <div class="c-addr">TMQyjfBgeMhFZQ6DnJxz12xQHY4tcGZgJe</div>
+      </div>
+      <button class="cp-btn">copy</button>
+    </div>
+
+    <button class="close-x" id="closeBtn">RIDE ETERNAL &#10005;</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

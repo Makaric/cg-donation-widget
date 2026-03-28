@@ -1,8 +1,7 @@
-﻿/**
- * Cosmic-Glitch Guru Widget
- * Neo-Hippie-Hardcore-Cosmo-Buddha-Punk / Mad Max
- * Created for Maxim G. (Makaric)
- */
+/* =============================================
+   COSMIC GLITCH GURU - i18n DONATION WIDGET
+   Locale: ru = Russian, everything else = English
+   ============================================= */
 
 class CosmicGuru {
   constructor() {
@@ -10,18 +9,18 @@ class CosmicGuru {
       en: {
         cta: ['WITNESS ME', 'FUEL THE FIRE', 'SHARE ENERGY', 'RIDE ETERNAL', 'CLICK BRO'],
         panelTitle: 'ENERGY EXCHANGE',
-        copied: 'COPIED!',
-        copy: 'copy',
-        close: 'RIDE ETERNAL',
-        coins: { eth: 'Ethereum', btc: 'Bitcoin', sol: 'Solana', trx: 'Tron' }
+        closeBtn: 'RIDE ETERNAL',
+        copyBtn: 'copy',
+        copiedBtn: 'COPIED!',
+        langLabel: 'EN'
       },
       ru: {
-        cta: ['ЗАСВИДЕТЕЛЬСТВУЙ', 'ПОДКИНЬ ОГНЯ', 'ЭНЕРГООБМЕН', 'ВЕЧНЫЙ ПУТЬ', 'ЖМАКНИ БРО'],
-        panelTitle: 'ЭНЕРГООБМЕН',
-        copied: 'СКОПИРОВАНО!',
-        copy: 'copy',
-        close: 'ВЕЧНЫЙ ПУТЬ',
-        coins: { eth: 'Ethereum', btc: 'Bitcoin', sol: 'Solana', trx: 'Tron' }
+        cta: ['\u0417\u0410\u0421\u0412\u0418\u0414\u0415\u0422\u0415\u041B\u042C\u0421\u0422\u0412\u0423\u0419', '\u041F\u041E\u0414\u041A\u0418\u041D\u042C \u041E\u0413\u041D\u042F', '\u042D\u041D\u0415\u0420\u0413\u041E\u041E\u0411\u041C\u0415\u041D', '\u0412\u0415\u0427\u041D\u042B\u0419 \u041F\u0423\u0422\u042C', '\u0416\u041C\u0410\u041A\u041D\u0418 \u0411\u0420\u041E'],
+        panelTitle: '\u041E\u0411\u041C\u0415\u041D \u042D\u041D\u0415\u0420\u0413\u0418\u0415\u0419',
+        closeBtn: '\u0412\u0415\u0427\u041D\u042B\u0419 \u041F\u0423\u0422\u042C',
+        copyBtn: '\u043A\u043E\u043F\u0438\u044F',
+        copiedBtn: '\u0421\u041A\u041E\u041F\u0418\u0420\u041E\u0412\u0410\u041D\u041E!',
+        langLabel: 'RU'
       }
     };
 
@@ -32,27 +31,50 @@ class CosmicGuru {
       trx: 'TMQyjfBgeMhFZQ6DnJxz12xQHY4tcGZgJe'
     };
 
-    this.isOpen = false;
+    this.lang = this.detectLang();
     this.ctaIdx = 0;
     this.init();
   }
 
-  get t() {
-    const lang = navigator.language.split('-')[0];
-    return this.locales[lang] || this.locales.en;
+  detectLang() {
+    const raw = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
+    return raw === 'ru' ? 'ru' : 'en';
   }
 
-  init() {
-    document.addEventListener('DOMContentLoaded', () => {
-      this.createDust();
-      this.createSparks();
-      this.startCtaRotation();
-      this.bindEvents();
+  get t() {
+    return this.locales[this.lang];
+  }
+
+  toggleLang() {
+    this.lang = this.lang === 'en' ? 'ru' : 'en';
+    this.applyLocale();
+  }
+
+  applyLocale() {
+    const loc = this.t;
+    document.getElementById('panelHdr').textContent = loc.panelTitle;
+    document.getElementById('closeBtn').innerHTML = loc.closeBtn + ' \u2715';
+    document.getElementById('langToggle').textContent = loc.langLabel;
+    document.getElementById('cta').textContent = loc.cta[0];
+    this.ctaIdx = 0;
+
+    document.querySelectorAll('.cp-btn').forEach(btn => {
+      if (!btn.classList.contains('copied')) {
+        btn.textContent = loc.copyBtn;
+      }
     });
   }
 
+  init() {
+    this.createDust();
+    this.createSparks();
+    this.startCtaRotation();
+    this.bindEvents();
+    this.applyLocale();
+  }
+
   createDust() {
-    const container = document.getElementById('dust');
+    const el = document.getElementById('dust');
     for (let i = 0; i < 60; i++) {
       const d = document.createElement('div');
       d.className = 'dust';
@@ -62,87 +84,81 @@ class CosmicGuru {
       d.style.setProperty('--dy', (Math.random() * 200 - 100) + 'px');
       d.style.animationDuration = (3 + Math.random() * 5) + 's';
       d.style.animationDelay = Math.random() * 5 + 's';
-      const size = (2 + Math.random() * 3) + 'px';
-      d.style.width = size;
-      d.style.height = size;
-      container.appendChild(d);
+      d.style.width = (2 + Math.random() * 3) + 'px';
+      d.style.height = d.style.width;
+      el.appendChild(d);
     }
   }
 
   createSparks() {
-    const container = document.getElementById('sparks');
+    const el = document.getElementById('sparks');
+    if (!el) return;
     for (let i = 0; i < 15; i++) {
       const s = document.createElement('div');
       s.className = 'spark';
-      s.style.left = (30 + Math.random() * 40) + '%';
+      s.style.left = (30 + Math.random() * 60) + '%';
       s.style.top = (10 + Math.random() * 40) + '%';
       s.style.setProperty('--sx', (Math.random() * 80 - 40) + 'px');
       s.style.setProperty('--sy', -(20 + Math.random() * 60) + 'px');
       s.style.animationDuration = (0.8 + Math.random() * 1) + 's';
       s.style.animationDelay = Math.random() * 2 + 's';
-      container.appendChild(s);
+      el.appendChild(s);
     }
   }
 
   startCtaRotation() {
-    const cta = document.getElementById('cta');
-    cta.textContent = this.t.cta[0];
     setInterval(() => {
-      this.ctaIdx = (this.ctaIdx + 1) % this.t.cta.length;
+      const phrases = this.t.cta;
+      this.ctaIdx = (this.ctaIdx + 1) % phrases.length;
+      const cta = document.getElementById('cta');
       cta.style.opacity = 0;
       setTimeout(() => {
-        cta.textContent = this.t.cta[this.ctaIdx];
+        cta.textContent = phrases[this.ctaIdx];
         cta.style.opacity = 1;
       }, 250);
     }, 3500);
   }
 
   bindEvents() {
-    const widget = document.getElementById('widget');
-    const panel = document.getElementById('panel');
-    const overlay = document.getElementById('overlay');
+    const self = this;
+    document.getElementById('widget').addEventListener('click', () => self.openPanel());
+    document.getElementById('overlay').addEventListener('click', () => self.closePanel());
+    document.getElementById('closeBtn').addEventListener('click', (e) => { e.stopPropagation(); self.closePanel(); });
+    document.getElementById('langToggle').addEventListener('click', (e) => { e.stopPropagation(); self.toggleLang(); });
 
-    widget.addEventListener('click', () => {
-      if (!this.isOpen) this.openPanel();
-    });
-
-    overlay.addEventListener('click', () => this.closePanel());
-
-    document.getElementById('close-btn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.closePanel();
-    });
-
-    document.querySelectorAll('.cp-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    document.querySelectorAll('.crypto-row').forEach(row => {
+      row.addEventListener('click', (e) => {
         e.stopPropagation();
-        const coin = btn.dataset.coin;
-        const addr = this.addresses[coin];
-        navigator.clipboard.writeText(addr).then(() => {
-          btn.textContent = this.t.copied;
-          btn.classList.add('copied');
-          setTimeout(() => {
-            btn.textContent = this.t.copy;
-            btn.classList.remove('copied');
-          }, 2000);
-        });
+        const coin = row.dataset.coin;
+        if (coin) self.copyAddr(coin, row.querySelector('.cp-btn'));
       });
     });
   }
 
   openPanel() {
-    this.isOpen = true;
     document.getElementById('widget').classList.add('active');
     document.getElementById('panel').classList.add('show');
     document.getElementById('overlay').classList.add('show');
   }
 
   closePanel() {
-    this.isOpen = false;
     document.getElementById('widget').classList.remove('active');
     document.getElementById('panel').classList.remove('show');
     document.getElementById('overlay').classList.remove('show');
   }
+
+  copyAddr(coin, btn) {
+    const addr = this.addresses[coin];
+    const loc = this.t;
+    navigator.clipboard.writeText(addr).then(() => {
+      btn.textContent = loc.copiedBtn;
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = loc.copyBtn;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
 }
 
-new CosmicGuru();
+document.addEventListener('DOMContentLoaded', () => new CosmicGuru());
