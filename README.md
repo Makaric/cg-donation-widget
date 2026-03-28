@@ -6,7 +6,7 @@ Animated crypto donation widget in **Neo-Hippie-Hardcore-Cosmo-Buddha-Punk / Mad
 
 ## Features
 - **Zero dependencies** - Vanilla JS/CSS/HTML
-- **i18n** - Auto-detects RU/EN/ES/PT from browser, cyclic toggle
+- **i18n** - Auto-detects RU/EN from browser
 - **Responsive** - Desktop (hover) + Mobile (tap)
 - **Mad Max design** - Wasteland Monk character with fire animations
 - **Copy-to-clipboard** - One click to copy any crypto address
